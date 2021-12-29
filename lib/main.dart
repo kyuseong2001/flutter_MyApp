@@ -15,13 +15,16 @@ class MyApp extends StatelessWidget {
         body:Align(
           alignment: Alignment.topCenter,
           child: Container(
-            width:40, height: 50,
+            width:double.infinity, height: 50,
+            // double.infinity 무한히
             decoration: BoxDecoration(
               border: Border.all(color:Colors.blue),
+              // 데코레이션 파라미터 종류 공부
             ),
+            // 찌끄래기 속성은 데코레이션에서 작업해야한다.
             margin: EdgeInsets.fromLTRB(0,30,0,0),
             padding:EdgeInsets.all(10),
-            child: Text('dddd'),
+            child: Text('안녕하세요'),
           ),
         ),
         bottomNavigationBar: BottomAppBar(
