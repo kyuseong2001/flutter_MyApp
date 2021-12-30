@@ -14,17 +14,39 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(title: Text('Rent Car'),
         leading : Icon(Icons.menu),
         ),
-      body:Row(
-        children: [
-          Flexible(child:Container(color:Colors.red),flex:3),
-          Flexible(child: Container(color:Colors.green),flex:7)
-        ],
+      body:Container(
+        height:150,
+        child: Row(
+          children: [
+            Image.asset('assets/camera.jpg', width: 140),
+            Expanded(
+              child:Container(
+                margin:EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children:[
+                    Text('카메라 팝니다',style:TextStyle(fontWeight: FontWeight.w700)),
+                    Text('금호동 3가'),
+                    Text('7000원'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: const [
+                        Icon(Icons.favorite),
+                        Text('4')
+                      ],
+                    )
+                  ],
+                ),
+              )
+            )
+          ],
+        ),
       ),
 
         bottomNavigationBar: BottomAppBar(
           child:Container(
-            margin:EdgeInsets.all(20),
-            padding:EdgeInsets.fromLTRB(10,10,10,10),
+            margin:EdgeInsets.all(10),
+            padding:EdgeInsets.all(10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
