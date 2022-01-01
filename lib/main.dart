@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(const MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -10,67 +11,74 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home:Scaffold(
+        appBar: AppBar(title:Text('eunseo market'),
+         leading: Icon(Icons.menu),
+          ),
 
 
-        appBar: AppBar(title: Text('Danggun Market'),
-          leading: Icon(Icons.menu)),
+        body: Container(
+            height:100,
+            margin:EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color:Colors.white54,
 
-        body:Container(
-          height:130,
+
+          ),
+
           child:Row(
+
             children: [
               Image.asset('assets/camera.jpg'),
               Expanded(
-                  child:Container(
-                    margin:EdgeInsets.all(10),
-                    child:Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                       children: [
-                        Text('카메라 팝니다.',style:TextStyle(fontWeight:FontWeight.w700, fontSize: 20)),
-                        Text('성수동 2가',style: TextStyle(fontSize: 18),),
-                        Text('7000원',style:TextStyle(fontWeight:FontWeight.w900,fontSize: 17)),
-                        Container(
 
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Icon(Icons.favorite),
-                            Text('2'),
-                           ],
-                          ),
-                        ),
+                child:Container(
+                  padding:EdgeInsets.fromLTRB(20,0,0,0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
 
-
-                      ],
-                    )
-                  ))
+                    children: [
+                      Text('abc 팝니다.',style:TextStyle(fontWeight: FontWeight.w700)),
+                      Text('은서 안경을 팝니다.'),
+                      Text('200원'),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Icon(Icons.favorite),
+                          Text('2')
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+              )
             ],
-          ),
+          )
         ),
-
-
-        bottomNavigationBar: BottomAppBar(
-          child:Container(
-            margin:EdgeInsets.all(20),
-            padding:EdgeInsets.fromLTRB(10, 10,10,10),
-
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(Icons.phone),
-                Icon(Icons.message),
-                Icon(Icons.contact_page)
-              ],
-            ),
-          ),
-        ),
-
-
-
-
+      bottomNavigationBar: BottomAppBar(),
       ),
     );
   }
 }
 
+class BottomAppBar extends StatelessWidget {
+  const BottomAppBar({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Container(
+          margin:EdgeInsets.all(20),
+          child:Row(
+            mainAxisAlignment:MainAxisAlignment.spaceEvenly,
+            children: [
+              Icon(Icons.phone),
+              Icon(Icons.message),
+              Icon(Icons.contact_page)
+            ],
+          )
+      ),
+    );
+
+  }
+}
