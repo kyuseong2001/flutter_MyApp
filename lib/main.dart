@@ -1,60 +1,56 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp( MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  var a =1;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home:Scaffold(
+        floatingActionButton: FloatingActionButton(
+          child:Text(a.toString()),
+          onPressed:(){
+            setState(() {
+              a++;
+            });
+          } ,
+
+        ),
         appBar: AppBar(title:Text('eunseo market'),
          leading: Icon(Icons.menu),
           ),
 
 
-        body: Container(
-            height:100,
-            margin:EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color:Colors.white54,
-
-
-          ),
-
-          child:Row(
-
-            children: [
-              Image.asset('assets/camera.jpg'),
-              Expanded(
-
-                child:Container(
-                  padding:EdgeInsets.fromLTRB(20,0,0,0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-
-                    children: [
-                      Text('abc 팝니다.',style:TextStyle(fontWeight: FontWeight.w700)),
-                      Text('은서 안경을 팝니다.'),
-                      Text('200원'),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Icon(Icons.favorite),
-                          Text('2')
-                        ],
-                      ),
-                    ],
-                  ),
-                )
-              )
-            ],
-          )
+        body: ListView.builder(
+          itemCount: 3,
+          itemBuilder: (context,i){
+            return ListTile(
+              leading: Icon(Icons.account_circle),
+              title:Text('홍길동'),
+            );
+          },
         ),
+
+
+
+
+
+
+
+
+
+
       bottomNavigationBar: BottomAppBar(),
       ),
     );
