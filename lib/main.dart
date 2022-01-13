@@ -18,8 +18,14 @@ class _MyAppState extends State<MyApp> {
 
   var name = ['조규성','조연우','조은서'];
   var a = 3;
-  var total =3;
+  var total =3; // 총 친구숫자
 
+
+  addName(a){
+    setState(() {
+      name.add(a);
+    });
+  }
 
   addOne(){
     setState(() {
@@ -35,7 +41,7 @@ class _MyAppState extends State<MyApp> {
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           showDialog(context: context, builder: (context){
-            return DialogUI(addOne : addOne);   // 부모정보를 자식state에 전송하는법
+            return DialogUI(addOne : addOne, addName : addName);   // 부모정보를 자식state에 전송하는법
             // 1. 작명:보내려는 변수
           });
         },
@@ -44,7 +50,7 @@ class _MyAppState extends State<MyApp> {
 
       appBar: AppBar(title:Text(total.toString())),
       body:ListView.builder(
-          itemCount: 3,
+          itemCount:name.length,
           itemBuilder:(c,i){
             return ListTile(
               leading: Icon(Icons.account_circle),
@@ -58,10 +64,12 @@ class _MyAppState extends State<MyApp> {
 
 
 class DialogUI extends StatelessWidget {
-   DialogUI({Key? key,this.addOne}) : super(key: key);
+   DialogUI({Key? key,this.addOne, this.addName}) : super(key: key);
 
   final addOne;
+  final addName;
 
+  // var inputData = TextEditingController();
   var inputData = TextEditingController();
 
   @override
@@ -73,9 +81,14 @@ class DialogUI extends StatelessWidget {
         child: Column(
           children: [
             TextField(controller:inputData,), // 인픗데이터에는 변수로저장이 된다.
-            TextButton(child: Text('완료'),onPressed:(){addOne();}, ),
+            TextButton(child: Text('완료'),
+              onPressed:(){
+              addOne();
+              addName(inputData.text);
+              Navigator.pop(context);
+              }, ),
             TextButton(child: Text('취소'),
-                onPressed:(){Navigator.pop(context); })
+                onPressed:(){Navigator.pop(context); }) // 버튼누르면 없어짐
           ],
         ),
       )
