@@ -54,6 +54,11 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+
+
+
+
       floatingActionButton: FloatingActionButton(
           child: Text('버튼'),
           onPressed: () {
@@ -63,11 +68,17 @@ class _MyAppState extends State<MyApp> {
                   return DialogUI(addName: addName,);
                 });
           }),
+
+
+
       appBar: AppBar(
         leading: Icon(Icons.menu),
         title: Text('shoppy'),
         actions: [
-          IconButton(onPressed: (){getPermission();}, icon: Icon(Icons.contacts),),],
+          IconButton(
+            onPressed: (){
+              getPermission();},
+            icon: Icon(Icons.contacts),),],
       ),
 
 
@@ -94,6 +105,11 @@ class _MyAppState extends State<MyApp> {
           );
         },
       ),
+
+
+
+
+
       bottomNavigationBar: BottomAppBar(
         child: Container(
           padding: EdgeInsets.all(20),
@@ -113,16 +129,13 @@ class _MyAppState extends State<MyApp> {
 
 class DialogUI extends StatefulWidget {
   const DialogUI({Key? key, this.addName}) : super(key: key);
-
   final addName;
-
   @override
   State<DialogUI> createState() => _DialogUIState();
 }
 
 class _DialogUIState extends State<DialogUI> {
   var inputData = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Dialog(
