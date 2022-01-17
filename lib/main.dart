@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-
+import 'package:contacts_service/contacts_service.dart';
 
 void main() {
   runApp(MaterialApp(home: MyApp()));
@@ -20,6 +20,20 @@ class _MyAppState extends State<MyApp> {
     var status = await Permission.contacts.status;
     if (status.isGranted) {
       print('허락됨');
+      var contacts = await ContactsService.getContacts();
+      print(contacts[1].familyName);
+
+      setState(() {
+        name = contacts;
+      });
+
+
+      // var newPerson = Contact();
+      // newPerson.givenName = '갑';
+      // newPerson.familyName = '수향';
+      // ContactsService.addContact(newPerson);
+
+
     } else if (status.isDenied) {
       print('거절됨');
       Permission.contacts.request();  // 팝업창 띄워주세요
@@ -93,7 +107,7 @@ class _MyAppState extends State<MyApp> {
         itemBuilder: (context, i) {
           return ListTile(
             leading: Icon(Icons.account_circle),
-            title: Text(name[i]),
+            title: Text(name[i].givenName),
             trailing: ElevatedButton(
               child: Text('삭제'),
               onPressed: () {
@@ -126,6 +140,13 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
+
+
+
+
+
+
 
 class DialogUI extends StatefulWidget {
   const DialogUI({Key? key, this.addName}) : super(key: key);
